@@ -1,11 +1,6 @@
-import GoogleMap from "./GoogleMap";
-import Import from "../../static/img/spot2.png";
 
 export default {
   name: "spot",
-  components: {
-    GoogleMap
-  },
   created() {
     //do we support geolocation
     if (!("geolocation" in navigator)) {
