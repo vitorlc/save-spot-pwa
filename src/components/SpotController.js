@@ -61,8 +61,9 @@ export default {
       location: null,
       gettingLocation: false,
       errorStr: null,
+      newName: '',
       msg: "Welcome to Save Your Spot App",
-      fields: ["latitude", "longitude", "Maps"],
+      fields: ["Spot", "Maps"],
       locationSaved: []
     };
   },
@@ -120,6 +121,17 @@ export default {
         let locations = this.$localStorage.get(`locationSaved`)
         let locationsJSON = JSON.parse(locations)
         window.open(`https://www.google.com/maps/search/?api=1&query=${locationsJSON[index].latitude},${locationsJSON[index].longitude}`)
+    },
+    clickEdit(item, index, target){
+      
+      let locations = this.$localStorage.get(`locationSaved`)
+      let locationsJSON = JSON.parse(locations)
+      locationsJSON[index].nome = this.newName
+      this.newName = ''
+      this.$localStorage.set(`locationSaved`, JSON.stringify(locationsJSON))
+      this.$nextTick(() => {
+        this.locationSaved = JSON.parse(localStorage.locationSaved);
+      })
     }
   }
 };

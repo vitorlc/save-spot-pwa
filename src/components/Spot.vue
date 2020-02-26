@@ -10,10 +10,29 @@
     </b-col>
     <br />
     <b-table striped hover :items="locationSaved" :fields="fields">
+      <template v-slot:cell(Spot)="row">
+        <b class="text-info" v-if="row.item.nome" @click="row.toggleDetails">
+          {{row.item.nome}}
+        </b>
+        <b class="text-info" v-else-if="!row.item.nome" @click="row.toggleDetails">
+          {{'lat: ' +row.item.latitude.toFixed(3) + ' - long: '+ row.item.longitude.toFixed(3)}}
+        </b>
+      </template>
+
+      <template v-slot:row-details="row">
+        <b-row>
+          <b-col>
+            <b-form-input  v-model="newName" placeholder="Enter spot name" ></b-form-input>
+          </b-col>
+          <b-col>
+            <b-button variant="success" @click="clickEdit(row.item, row.index, $event.target)" size="sm">Salvar</b-button>
+          </b-col>
+        </b-row>
+      </template>
+
       <template v-slot:cell(Maps)="row">
         <img src="../../static/img/google-maps.png"  @click="clickOnMap(row.item, row.index, $event.target)"/>
       </template>
-
     </b-table>
     <br />
   </div>
