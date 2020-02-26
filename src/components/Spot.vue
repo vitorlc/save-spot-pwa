@@ -25,7 +25,8 @@
             <b-form-input  v-model="newName" placeholder="Enter spot name" ></b-form-input>
           </b-col>
           <b-col>
-            <b-button variant="success" @click="clickEdit(row.item, row.index, $event.target)" size="sm">Salvar</b-button>
+            <b-button variant="success" @click="clickEdit(row.item, row.index, $event.target)">Salvar</b-button>
+            <b-button variant="danger" @click="clickDelete(row.item, row.index, $event.target)">Deletar</b-button>
           </b-col>
         </b-row>
       </template>

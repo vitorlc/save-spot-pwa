@@ -132,6 +132,16 @@ export default {
       this.$nextTick(() => {
         this.locationSaved = JSON.parse(localStorage.locationSaved);
       })
-    }
+    },
+    clickDelete(item, index, target){  
+      let locations = this.$localStorage.get(`locationSaved`)
+      let locationsJSON = JSON.parse(locations)
+      locationsJSON = locationsJSON.filter(item => item !== locationsJSON[index])
+      this.$localStorage.remove(`locationSaved`)
+      this.$localStorage.set(`locationSaved`, JSON.stringify(locationsJSON))
+      this.$nextTick(() => {
+        this.locationSaved = JSON.parse(localStorage.locationSaved);
+      })
+    },
   }
 };
